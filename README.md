@@ -5,13 +5,13 @@
 
 Добавьте аргумент `--help` для вызова справки.
 
-| Parameter | Type     | Description           |
-| :-------- | :------- | :-------------------- |
-| `-bgdark` | `int`    | bg dark am [1 - 9]    |
-| `-blur`   | `int`    | bg blur am            |
-| `-news`   | `bool`   | toggle news tab       |
-| `-bgsize` | `int`    | bg siz                |
-| `-bgurl`  | `string` | bgurl                 |
-| `-path`   | `string` | steam path            |
+| Parameter             | Type     | Description            |
+| :-------------------- | :------- | :--------------------- |
+| `-i/--background_url` | `int`    | Background URL         |
+| `-b/--background_blur`| `int`    | Background blur effect |
+| `-n/--hide_news`      | `bool`   | Hide news              |
+| `-p/--steam_path`     | `string` | Steam path             |
 
 ![Logo](https://github.com/Michael-Soyka/steam-lib-designer/blob/master/prev.PNG?raw=true)
+
+Сopyright © Xendot, Solyanka, Shelest, MichaelSoyka 2022-2022
