@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser(description="Configure your Steam.")
 
 parser.add_argument("-i", "--background_url", default=default_background_img, help="Background URL.")
 parser.add_argument("-b", "--background_blur", default=1, type=int, help="Blur effect.")
-parser.add_argument("-n", "--hide_news", default=0, type=int, help="Hide news.")
+parser.add_argument("-n", "--hide_news", action="store_true", help="Hide news.")
 parser.add_argument("-p", "--steam_path", default=get_steam_path(), help="Steam path.")
 
 args = parser.parse_args()
@@ -119,7 +119,7 @@ for css_file_path in css_files:
                 '''
                     opacity: 1;
                     display:{0};
-                '''.format("block" if args.hide_news == 0 else "none")
+                '''.format("none" if args.hide_news else "block")
             ),
             css=css_code
         )
