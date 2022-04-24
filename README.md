@@ -1,9 +1,15 @@
 
 # Steam Library Redesigner
 
-Скрипт меняющий фон библиотеки Steam
-
+### RU
+Скрипт меняющий фон библиотеки Steam.  
 Добавьте аргумент `--help` для вызова справки.
+
+
+### ENG
+
+Script changes Steam library background.  
+Add `--help` argument for help.
 
 | Parameter                 | Type     | Description                    |
 | :------------------------ | :------- | :----------------------------- |
