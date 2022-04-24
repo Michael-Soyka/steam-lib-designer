@@ -12,7 +12,7 @@ def get_steam_path():
     elif sys.platform.startswith("win32"):
         path = os.path.join(os.getenv("ProgramFiles(x86)"), "Steam/")
     elif sys.platform.startswith("darwin"):
-        print("П*дарас ?")
+        print("Извините, *ваша* система не поддерживает игровую платформу Steam!")
         exit(1)
 
     if not os.path.exists(path):
@@ -28,7 +28,8 @@ default_background_img = "https://images-ext-1.discordapp.net/"\
 parser = argparse.ArgumentParser(description="Configure your Steam.")
 
 parser.add_argument("-i", "--background_url", default=default_background_img, help="Background URL.")
-parser.add_argument("-b", "--background_blur", default=1, type=int, help="Blur effect.")
+parser.add_argument("-b", "--background_blur", default=1, type=int, help="Background blur effect.")
+parser.add_argument("-d", "--background_darkness", default=0.2, type=float, help="Background dark effect.")
 parser.add_argument("-n", "--hide_news", action="store_true", help="Hide news.")
 parser.add_argument("-p", "--steam_path", default=get_steam_path(), help="Steam path.")
 
@@ -108,7 +109,7 @@ for css_file_path in css_files:
                     background: rgba(0,0,0,{0});
                     height: 100vh;
                     backdrop-filter: blur({1}px);
-                '''.format(".1", args.background_blur)
+                '''.format(args.background_darkness, args.background_blur)
             ),
             css=css_code
         )
