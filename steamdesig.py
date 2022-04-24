@@ -34,8 +34,6 @@ parser.add_argument("-p", "--steam_path", default=get_steam_path(), help="Steam 
 
 args = parser.parse_args()
 
-print(args.hide_news)
-
 
 def minimize_css(css):
     chars_blacklist = ("\t", "\n", " ")
