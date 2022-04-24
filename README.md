@@ -14,4 +14,6 @@
 
 ![Logo](https://github.com/Michael-Soyka/steam-lib-designer/blob/master/prev.PNG?raw=true)
 
+![Logo1](https://github.com/Michael-Soyka/steam-lib-designer/blob/master/PREV.gif?raw=true)
+
 Сopyright © Xendot, Solyanka, Shelest, MichaelSoyka 2022-2022
