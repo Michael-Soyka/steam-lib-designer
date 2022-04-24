@@ -68,7 +68,7 @@ for css_file_path in css_files:
 
     print("Patching '{0}'".format(css_file_path))
 
-    with open(css_file_path, "tr") as css_file:
+    with open(css_file_path, "tr", encoding="utf-8") as css_file:
         css_code = css_file.read()
 
         css_code = replace_css(
@@ -124,5 +124,5 @@ for css_file_path in css_files:
             css=css_code
         )
 
-    with open(css_file_path, "tw") as css_file:
+    with open(css_file_path, "tw", encoding="utf-8") as css_file:
         css_file.write(css_code)
