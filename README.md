@@ -25,6 +25,7 @@ Add `--help` argument for help.
 
 ### Uninstall
 
-Just delete <stampath>/steamui/css folder and restart your Steam
+Just delete <stampath>/steamui/css folder and restart your Steam  
+</br>
 
 Сopyright © Xendot, Solyanka, Shelest, MichaelSoyka 2022-2022
