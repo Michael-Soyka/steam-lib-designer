@@ -23,4 +23,8 @@ Add `--help` argument for help.
 
 ![Logo1](https://github.com/Michael-Soyka/steam-lib-designer/blob/master/PREV.gif?raw=true)
 
+### Uninstall
+
+Just delete <stampath>/steamui/css folder and restart your Steam
+
 Сopyright © Xendot, Solyanka, Shelest, MichaelSoyka 2022-2022
