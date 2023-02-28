@@ -4,12 +4,13 @@
 ### RU
 Скрипт меняющий фон библиотеки Steam.  
 Добавьте аргумент `--help` для вызова справки.
-
+> Если после выполнения скрипта, ничего не изменилось, попробуйте запустить стим с аргументом '-dev'
 
 ### ENG
 
 Script changes Steam library background.  
 Add `--help` argument for help.
+> If nothing has changed after executing the script, try running steam with the '-dev' argument
 
 | Parameter                 | Type     | Description                                                        |
 | :------------------------ | :------- | :----------------------------------------------------------------- |
