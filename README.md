@@ -1,6 +1,8 @@
 
 # Steam Library Redesigner
 
+# !!! Does not work with the new version!
+
 ### RU
 Скрипт меняющий фон библиотеки Steam.  
 Добавьте аргумент `--help` для вызова справки.
