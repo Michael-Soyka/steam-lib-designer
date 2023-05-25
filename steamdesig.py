@@ -2,12 +2,12 @@ import re
 import os
 import sys
 import argparse
-import winreg
 import json
 import urllib.request
 
-def clamp(n, minn, maxn):
-    return max(min(maxn, n), minn)
+if sys.platform.startswith("win32"):
+    import winreg
+
 
 # Get steam path
 #   get steam path
@@ -72,23 +72,10 @@ def vkplay_api_get_wallpaper(input_something):
     
     return vk_game_api_json
 
-# Random Foxes API
-#   getting random fox pic
-def foxes_get_json():
-    foxes_api_get_format = "https://randomfox.ca/floof/"
-
-    try:
-        foxes_api_get = urllib.request.Request(foxes_api_get_format)
-        foxes_api_get.add_header("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"\
-                                                "AppleWebKit/537.36 (KHTML, like Gecko)"\
-                                                "Chrome/97.0.4692.99 Safari/537.36")
-        foxes_api_get_format = urllib.request.urlopen(foxes_api_get)
-    except Exception as error:
-        print("Foxes API # Error in getting json!")
-        return error
-    
-    foxes_api_json = json.load(foxes_api_get_format)['image']
-    return foxes_api_json
+# Useful shit
+#   -
+def clamp(n, minn, maxn):
+    return max(min(maxn, n), minn)
 
 # Useful shit for css
 #   -
@@ -126,8 +113,6 @@ parser.add_argument("-p", "--steam_path",
                     default=get_steam_path(), help="Steam path.")
 parser.add_argument("-vk", "--vkplay_wallpaper",
                     default=None, help="VKplay Game Wallpaper")
-parser.add_argument("-foxes", "--foxes_wallpaper",
-                    action="store_true", help="Random Foxes Wallpaper")
 
 args = parser.parse_args()
 
@@ -142,14 +127,17 @@ if not os.path.exists(steamui_path):
     print(f"Not found directory '{steamui_path}'")
     sys.exit(1)
 
-css_files = os.listdir(steamui_path)
+def get_all_files(directory):
+    for dirpath,dirnames,filenames in os.walk(directory):
+        for files in filenames:
+            yield os.path.abspath(os.path.join(dirpath, files))
+
+css_files = [*get_all_files(steamui_path)]
 
 # Set background url
 background_image_url = args.background_url
 if args.vkplay_wallpaper is not None:
     background_image_url = vkplay_api_get_wallpaper(args.vkplay_wallpaper)
-if args.foxes_wallpaper:
-    background_image_url = foxes_get_json()
 
 # Main code
 for css_file_path in css_files:
@@ -160,6 +148,7 @@ for css_file_path in css_files:
         IN_EDITING = True
 
     css_file_path = os.path.join(steamui_path, css_file_path)
+    print("                " + css_file_path)
 
     print(f"Patching '{css_file_path}'")
 
@@ -168,8 +157,8 @@ for css_file_path in css_files:
         print(css_file)
 
         css_code = replace_css(
-            selector=".library_AppDetailsTransitionGroup_",
-            body=minimize_css(
+            ".library_AppDetailsTransitionGroup_",
+            minimize_css(
                 f'''
                     position:relative;
                     top:0;
@@ -182,45 +171,45 @@ for css_file_path in css_files:
                     background-size: cover;
                 '''
             ),
-            css=css_code
+            css_code
         )
 
         css_code = replace_css(
-            selector=".libraryhome_UpdatesContainer_",
-            body=minimize_css(f'''
+            ".libraryhome_UpdatesContainer_",
+            minimize_css(f'''
                         background: transparent;
                         {"height: 0px !important;" if args.hide_news else ""}
                     '''),
-            css=css_code
+            css_code
         )
 
         css_code = replace_css(
-            selector=".libraryhome_LibraryHome_",
-            body="background: transparent;",
-            css=css_code
+            ".libraryhome_LibraryHome_",
+            "background: transparent;",
+            css_code
         )
 
         css_code = replace_css(
-            selector=".libraryhome_Container_",
-            body=minimize_css(
+            ".libraryhome_Container_",
+            minimize_css(
                 f'''
                     background: rgba(0,0,0,{args.background_darkness});
                     height: 100vh;
                     backdrop-filter: blur({args.background_blur}px);
                 '''
             ),
-            css=css_code
+            css_code
         )
 
         css_code = replace_css(
-            selector=".pageablecontainer_PageableContainer_",
-            body=minimize_css(
+            ".pageablecontainer_PageableContainer_",
+            minimize_css(
                 f'''
                     opacity: 1;
                     display:{"none" if args.hide_news else "block"};
                 '''
             ),
-            css=css_code
+            css_code
         )
 
     with open(css_file_path, "tw", encoding="utf-8") as css_file:
